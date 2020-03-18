@@ -80,9 +80,9 @@
 
         // Check that we have a valid context to draw on/with before adding event handlers
         if (ctx) {
-            canvas.addEventListener('mousedown', sketchpad_mouseDown, false);
-            canvas.addEventListener('mousemove', sketchpad_mouseMove, false);
-            window.addEventListener('mouseup', sketchpad_mouseUp, false);
+            canvas.addEventListener('touchstart', sketchpad_mouseDown, false);
+            canvas.addEventListener('touchmove', sketchpad_mouseMove, false);
+            window.addEventListener('touchend', sketchpad_mouseUp, false);
         }
     }
 </script>
