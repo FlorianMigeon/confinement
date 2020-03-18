@@ -16,8 +16,7 @@
 setTimeout(function(){ alert('Remplissez les champs puis cliquez sur "générer le document"'); }, 1000);
 }
    
-   setTimeout(
-      function generatePDF() {
+  function generatePDF() {
         // Choose the element that our invoice is rendered in.
         var element = document.getElementById("printCOVIDPDF");
         // Define options :
@@ -26,8 +25,8 @@ setTimeout(function(){ alert('Remplissez les champs puis cliquez sur "générer 
   image:        { type: 'jpeg', quality: 0.98 },
 };
 		// Choose the element and save the PDF for our user.
-        html2pdf().set(opt).from(element).save();
-      }, 2000);
+       setTimeout(function(){ html2pdf().set(opt).from(element).save();}, 1000);
+      }
 	  
 	  
 	  
