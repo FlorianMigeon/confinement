@@ -278,17 +278,58 @@ var fmiSign;
   canvas.addEventListener('mousedown', on_mousedown, false);
 }
 
-function signatureSave() {
-  var canvas = document.getElementById("ICIsignature");// save canvas image as data url (png format by default)
-  var dataURL = canvas.toDataURL("image/png");
-  document.getElementById("saveSignature").src = dataURL;
-};
+var Signature = {
 
-function signatureClear() {
-  var canvas = document.getElementById("ICIsignature");
-  var context = canvas.getContext("2d");
-  context.clearRect(0, 0, canvas.width, canvas.height);
-}
+    //Récupère la position du pointeur/doigt
+    getPosition: function (e, canvas){
+        var rect = canvas.getBoundingClientRect(),
+            eElement = e.changedTouches? e.changedTouches[0]:e;
+        return {
+        posX : (eElement.clientX - rect.left) / (rect.right - rect.left) * canvas.width,
+        posY : (eElement.clientY - rect.top) / (rect.bottom - rect.top) * canvas.height
+        };
+    },
+
+    //Commence à déssiner (quand on pose le pointeur ou le doigt sur le canvas)
+    startDessin: function (e){ 
+        e.preventDefault(); 
+        var canvas = e.currentTarget,
+            position = Signature.getPosition(e, canvas);
+        canvas.posX = position.posX;
+        canvas.posY = position.posY;
+        Signature.dessiner = true;
+        document.getElementById("valider").disabled = false;
+        capturer(false);
+    },
+
+    //Dessine
+    dessiner: function (e){ 
+        var canvas = e.currentTarget,
+            ctx = null, position = null;
+        if(canvas.dessiner == false){
+          return false;
+        }
+        position = Signature.getPosition(e, canvas);
+        ctx = canvas.getContext('2d');
+        
+        //dessine
+        ctx.strokeStyle = 'red';
+        ctx.lineWidth = 3;
+        ctx.beginPath(); 
+        ctx.moveTo((canvas.posX), canvas.posY);
+        ctx.lineTo(position.posX, position.posY);
+        ctx.stroke();
+        
+        canvas.posX = position.posX;
+        canvas.posY = position.posY; 
+    },
+
+    //Arrêt du dessin (levé du stylo (pointeur/doigt))
+    stopDessin: function (e){
+        var canvas = e.currentTarget;
+        Signature.dessiner = false; 
+        capturer(true);
+    },
 	  
 		
    
