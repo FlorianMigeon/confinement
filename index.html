@@ -159,7 +159,7 @@
         }
 		
 		.paper-box table tr.information table td.sousigne {
-            width: 100%;
+            width: 100%s;
             display: block;
             text-align: center;
         }
@@ -216,14 +216,12 @@
 }
 
 #sig-canvas {
-			border: 2px dotted #CCCCCC;
+			border: 2px solid #f3f6f9;
 			border-radius: 5px;
 			cursor: crosshair;
 		}
 
-		#sig-dataUrl {
-			width: 100%;
-		}
+		
 
 
     </style>
@@ -257,9 +255,9 @@ déplacements dans le cadre de la lutte contre la propagation du virus Covid-19 
             </tr>
             <tr class="entete">
                 <td colspan="2"><br>
-                    certifie que mon déplacement est lié au motif suivant (cocher la case) autorisé par
+                    <div>certifie que mon déplacement est lié au motif suivant (cocher la case) autorisé par
 l’article 1er du décret du 16 mars 2020 portant réglementation des déplacements dans
-le cadre de la lutte contre la propagation du virus Covid-19 :
+le cadre de la lutte contre la propagation du virus Covid-19 :</div>
                 </td>   
             </tr>
           <tr class="optionscovidpdf">
@@ -297,45 +295,22 @@ des animaux de compagnie.</label>
             <td class="sousigne">
 								Fait à :<textarea style="width:300px;"  class="coord" rows="1"></textarea>
 								<br>le :<textarea style="width:100px;" class="coord" rows="1"></textarea>
-								<br>Signature : 
+								<br>Signature : <br>
 								
 								 
     
    
-   <div class="container">
-		<div class="row">
-			<div class="col-md-12">
-				<h1>E-Signature</h1>
-				<p>Sign in the canvas below and save your signature as an image!</p>
-			</div>
-		</div>
-		<div class="row">
-			<div class="col-md-12">
-		 		<canvas id="sig-canvas" width="620" height="160">
-		 			Get a better browser, bro.
+   
+		
+		
+		 		<canvas id="sig-canvas" width="300" height="160">
+		 			
 		 		</canvas>
-		 	</div>
-		</div>
-		<div class="row">
-			<div class="col-md-12">
-				<button class="btn btn-primary" id="sig-submitBtn">Submit Signature</button>
-				<button class="btn btn-default" id="sig-clearBtn">Clear Signature</button>
-			</div>
-		</div>
-		<br/>
-		<div class="row">
-			<div class="col-md-12">
-				<textarea id="sig-dataUrl" class="form-control" rows="5">Data URL for your signature will go here!</textarea>
-			</div>
-		</div>
-		<br/>
-		<div class="row">
-			<div class="col-md-12">
-				<img id="sig-image" src="" alt="Your signature will go here!"/>
-			</div>
-		</div>
-	</div>
-	<br>
+		 	
+		
+				
+			
+		
     
 
 
@@ -371,20 +346,11 @@ des animaux de compagnie.</label>
 	ctx.lineWith = 2;
 
 	// Set up the UI
-	var sigText = document.getElementById("sig-dataUrl");
-	var sigImage = document.getElementById("sig-image");
-	var clearBtn = document.getElementById("sig-clearBtn");
-	var submitBtn = document.getElementById("sig-submitBtn");
-	clearBtn.addEventListener("click", function (e) {
-		clearCanvas();
-		sigText.innerHTML = "Data URL for your signature will go here!";
-		sigImage.setAttribute("src", "");
-	}, false);
-	submitBtn.addEventListener("click", function (e) {
-		var dataUrl = canvas.toDataURL();
-		sigText.innerHTML = dataUrl;
-		sigImage.setAttribute("src", dataUrl);
-	}, false);
+	
+	
+	
+	
+	
 
 	// Set up mouse events for drawing
 	var drawing = false;
@@ -469,9 +435,7 @@ des animaux de compagnie.</label>
 		}
 	}
 
-	function clearCanvas() {
-		canvas.width = canvas.width;
-	}
+	
 
 	// Allow for animation
 	(function drawLoop () {
