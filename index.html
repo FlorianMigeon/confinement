@@ -2,6 +2,7 @@
  <Head>
  <meta charset="utf-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width,initial-scale=1" id="viewport-meta" />
 	<meta name="description" content="">
 	<meta name="keywords" content="">
 	<meta name="author" content="">
@@ -14,6 +15,10 @@
 	 function popup(){
 setTimeout(function(){ alert('Remplissez les champs puis cliquez sur "générer le document"'); }, 1000);
 }
+   
+   
+   
+   
    
    
       function generatePDF() {
@@ -234,7 +239,7 @@ setTimeout(function(){ alert('Remplissez les champs puis cliquez sur "générer 
 	</head>
 	<body onload="popup()">
 	<div>
-	<div id="formPDF" class="form-box" style="display:block;width:100%; height:100%; margin:0;">
+	<div id="formPDF" class="form-box" style="display:block;">
 	<div>Mme / M:<br> <textarea class="generator" rows="1" id="Gen1" maxlength="100"></textarea></div>
 	<div>Né(e) le:<br> <textarea class="generator" rows="1" id="Gen2" maxlength="100"></textarea></div>
 	<div>Demeurant : <br> <textarea class="generator" rows="4" id="Gen3" maxlength="100"></textarea></div>
@@ -365,6 +370,7 @@ des animaux de compagnie.</label>
 	document.getElementById("printCOVIDPDF").style.display="block";
 	document.getElementById("formPDF").style.display="none";
 	document.getElementById("boutonGen").style.display="block";
+	document.getElementById("viewport-meta").setAttribute("content", "*");
 	setTimeout(function(){ alert('Cochez la raison de votre déplacmenet puis cliquez sur "générer le PDF"'); }, 1000);
 
 		var dataUrl = canvas.toDataURL();
