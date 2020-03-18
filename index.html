@@ -2,6 +2,7 @@
  <Head>
  <meta charset="utf-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<meta name="description" content="">
 	<meta name="keywords" content="">
 	<meta name="author" content="">
@@ -15,6 +16,7 @@
 setTimeout(function(){ alert('Remplissez les champs puis cliquez sur "générer le document"'); }, 1000);
 }
    
+   setTimeout(
       function generatePDF() {
         // Choose the element that our invoice is rendered in.
         var element = document.getElementById("printCOVIDPDF");
@@ -25,7 +27,7 @@ setTimeout(function(){ alert('Remplissez les champs puis cliquez sur "générer 
 };
 		// Choose the element and save the PDF for our user.
         html2pdf().set(opt).from(element).save();
-      }
+      }, 2000);
 	  
 	  
 	  
