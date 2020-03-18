@@ -252,7 +252,7 @@
                                 <b>ATTESTATION DE DÉPLACEMENT DÉROGATOIRE</b><br>
                                 En application de l’article 1er du décret du 16 mars 2020 portant réglementation des
 déplacements dans le cadre de la lutte contre la propagation du virus Covid-19 :<br>  
-                            <td class="sousigne" style="padding-left:100px;">
+                            <td class="sousigne" style="padding-left:50px;">
 								<b>Je sousigné :</b><br>
                                 Mme / M: <textarea  style="width:100%;" class="coord" rows="1" id="iciGen1"></textarea>
 								Né(e) le :  <textarea  style="width:100%;" class="coord" rows="1" id="iciGen2"></textarea>
@@ -304,7 +304,12 @@ des animaux de compagnie.</label>
 								Fait à :<textarea  style="width:300px;"  class="coord" rows="1" id="iciGen4"></textarea>
 								<br>le :<textarea  style="width:100px;" class="coord" rows="1" id="iciGen5"></textarea>
 								<br>Signature : <br>
-				<img id="sig-image" src=""/>
+				<canvas id="sig-canvas" width="300" height="160"></canvas><br>
+				<button style="display:none;" class="btn btn-primary" id="sig-submitBtn">Générer le document</button>
+				<button class="btn btn-default" id="sig-clearBtn">Refaire Signature</button>
+				<textarea style="display:none;" id="sig-dataUrl" class="form-control" rows="5"></textarea>
+<br>	<br>
+				Horodatage génération : <script>var DATE=new Date();document.write(DATE.getDate()+"/"+(DATE.getMonth()+1)+"/"+DATE.getFullYear());</script> à <script>var HEURE = new Date(); document.write(HEURE.getHours()+"h"+HEURE.getMinutes());</script>
                             </td>                      
         </table>
     </div>
