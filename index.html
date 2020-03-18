@@ -1,0 +1,416 @@
+ <html>
+ <Head>
+ <script type="application/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.9.2/html2pdf.bundle.min.js"></script>
+	<script type="application/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.10.1/jquery.min.js"></script>
+	
+	<script type="text/javascript">
+    // Variables for referencing the canvas and 2dcanvas context
+    var canvas,ctx;
+
+    // Variables to keep track of the mouse position and left-button status 
+    var mouseX,mouseY,mouseDown=0;
+
+    // Draws a dot at a specific position on the supplied canvas name
+    // Parameters are: A canvas context, the x position, the y position, the size of the dot
+    function drawDot(ctx,x,y,size) {
+        // Let's use black by setting RGB values to 0, and 255 alpha (completely opaque)
+        r=0; g=0; b=0; a=255;
+
+        // Select a fill style
+        ctx.fillStyle = "rgba("+r+","+g+","+b+","+(a/255)+")";
+
+        // Draw a filled circle
+        ctx.beginPath();
+        ctx.arc(x, y, size, 0, Math.PI*2, true); 
+        ctx.closePath();
+        ctx.fill();
+    } 
+
+    // Clear the canvas context using the canvas width and height
+    function clearCanvas(canvas,ctx) {
+        ctx.clearRect(0, 0, canvas.width, canvas.height);
+    }
+
+    // Keep track of the mouse button being pressed and draw a dot at current location
+    function sketchpad_mouseDown() {
+        mouseDown=1;
+        drawDot(ctx,mouseX,mouseY,12);
+    }
+
+    // Keep track of the mouse button being released
+    function sketchpad_mouseUp() {
+        mouseDown=0;
+    }
+
+    // Keep track of the mouse position and draw a dot if mouse button is currently pressed
+    function sketchpad_mouseMove(e) { 
+        // Update the mouse co-ordinates when moved
+        getMousePos(e);
+
+        // Draw a dot if the mouse button is currently being pressed
+        if (mouseDown==1) {
+            drawDot(ctx,mouseX,mouseY,12);
+        }
+    }
+
+    // Get the current mouse position relative to the top-left of the canvas
+    function getMousePos(e) {
+        if (!e)
+            var e = event;
+
+        if (e.offsetX) {
+            mouseX = e.offsetX;
+            mouseY = e.offsetY;
+        }
+        else if (e.layerX) {
+            mouseX = e.layerX;
+            mouseY = e.layerY;
+        }
+     }
+
+
+    // Set-up the canvas and add our event handlers after the page has loaded
+    function init() {
+        // Get the specific canvas element from the HTML document
+        canvas = document.getElementById('sketchpad');
+
+        // If the browser supports the canvas tag, get the 2d drawing context for this canvas
+        if (canvas.getContext)
+            ctx = canvas.getContext('2d');
+
+        // Check that we have a valid context to draw on/with before adding event handlers
+        if (ctx) {
+            canvas.addEventListener('mousedown', sketchpad_mouseDown, false);
+            canvas.addEventListener('mousemove', sketchpad_mouseMove, false);
+            window.addEventListener('mouseup', sketchpad_mouseUp, false);
+        }
+    }
+</script>
+	
+	
+	<script type="application/javascript">
+      
+	  
+
+	  
+		
+   
+      function generatePDF() {
+        // Choose the element that our invoice is rendered in.
+        var element = document.getElementById("printCOVIDPDF");
+        // Define options :
+		var opt = {
+  filename:     'confinement-coronavirus.pdf',
+  image:        { type: 'jpeg', quality: 0.98 },
+};
+		// Choose the element and save the PDF for our user.
+        html2pdf().set(opt).from(element).save();
+      }
+	  
+	  
+	  
+	  
+    </script>
+	
+    <style>
+    .paper-box {
+        max-width: 800px;
+        margin: auto;
+        padding: 30px;
+        border: 1px solid #eee;
+        box-shadow: 0 0 10px rgba(0, 0, 0, .15);
+        font-size: 15px;
+        line-height: 20px;
+        font-family: 'Libre Franklin', 'Helvetica Neue', 'Helvetica', Helvetica, Arial, sans-serif;
+        color: #555;
+		background: #fff;
+    }
+	
+		
+    
+    .paper-box table {
+        width: 100%;
+        line-height: inherit;
+        text-align: left;
+    }
+    
+    .paper-box table td {
+        padding: 5px;
+        vertical-align: top;
+    }
+    
+    .paper-box table tr td.qteprix {
+        text-align: right;
+		font-size: 15px;
+        line-height: 20px;
+        font-family: 'Libre Franklin', 'Helvetica Neue', 'Helvetica', Helvetica, Arial, sans-serif;
+    }
+    
+    .paper-box table tr.top table td {
+        padding-bottom: 20px;
+    }
+    
+    .paper-box table tr.top table td.title {
+        font-size: 45px;
+        line-height: 45px;
+        color: #333;
+    }
+    
+    .paper-box table tr.information table td {
+        padding-bottom: 40px;
+		text-align:left;
+		font-size: 15px;
+        line-height: 20px;
+        font-family: 'Libre Franklin', 'Helvetica Neue', 'Helvetica', Helvetica, Arial, sans-serif;
+    }
+	
+	
+    
+    .paper-box table tr.entete td {
+       background: #fff;
+       color: #555;
+        border-bottom: 1px solid #ddd;
+        font-weight: bold;
+    }
+    
+    .paper-box table tr.details td {
+        padding-bottom: 20px;
+    }
+	
+    
+    .paper-box table tr.optionscovidpdf td{
+        border-bottom: 1px solid #eee;
+		font-size: 15px;
+        line-height: 20px;
+       
+    }
+    
+    .paper-box table tr.optionscovidpdf.last td {
+        border-bottom: none;
+		font-size: 15px;
+        line-height: 20px;
+       
+    }
+    
+    .paper-box table tr td.total {
+        border-top: 2px solid #eee;
+        font-weight: bold;
+    }
+	
+	
+	textarea.coord {
+		font-size: 15px;
+        line-height: 25px;
+        padding:0;
+        font-family: 'Libre Franklin', 'Helvetica Neue', 'Helvetica', Helvetica, Arial, sans-serif;
+        color: #555;
+		border:0px;
+		text-align: right;
+		resize:none;
+		background-color:#f3f6f9;
+	}
+	
+	
+	title {
+		font-size: 30px;
+        line-height: 40px;
+        font-family: 'Libre Franklin', 'Helvetica Neue', 'Helvetica', Helvetica, Arial, sans-serif;
+        color: #555;
+		border:0px;	
+	}
+    
+    @media only screen and (max-width: 600px) {
+        
+		.paper-box table tr.top table td {
+            width: 100%;
+			display: block;
+            text-align: center;
+        }
+        
+        .paper-box table tr.information table td {
+            width: 100%;
+            display: block;
+            text-align: center;
+        }
+		
+		.paper-box table tr.information table td.sousigne {
+            width: 100%;
+            display: block;
+            text-align: center;
+        }
+    }
+	
+	@media (max-width: 600px) {
+        .paper-box {
+			border: 0px solid #eee;
+			box-shadow: 0 0 10px rgba(0, 0, 0, .0);
+			padding:30px 0 0 0;
+			margin-top:0px;
+		}
+		
+		.paper-box table tr.top table td.title {
+			padding-bottom: 50px;
+			width: 100%;
+            display: block;
+            text-align: center;
+    }		
+    }
+	
+.square_btn {
+	display: inline-block;
+    padding: 0.3em 1em;
+    font-family: 'Libre Franklin', 'Helvetica Neue', 'Helvetica', Helvetica, Arial, sans-serif;
+	text-decoration: none;
+    color: #eee;
+    border: solid 2px #555;
+    border-radius: 3px;
+	background: #555;
+    transition: .4s;
+}
+
+.square_btn:hover {
+    background: #eee;
+    color: #555;
+} 
+	
+	* {
+  margin:0;
+  padding:0;
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
+}
+
+.bouton {
+	text-align:center;
+	width:300px;
+	margin:15px auto;
+	font-family: 'Libre Franklin', 'Helvetica Neue', 'Helvetica', Helvetica, Arial, sans-serif;
+	font-size: 15px;
+    line-height: 20px;
+}
+
+#sketchpadapp {
+    /* Prevent nearby text being highlighted when accidentally dragging mouse outside confines of the canvas */
+    -webkit-touch-callout: none;
+    -webkit-user-select: none;
+    -khtml-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+}
+
+
+#sketchpad {
+    float:left;
+    border:2px solid #f3f6f9;
+    border-radius:4px;
+    position:relative; /* Necessary for correct mouse co-ords in Firefox */
+}
+
+
+    </style>
+	</head>
+	<body onload="init()">
+	<div style="display:block;">
+<br>	
+	<div id="printCOVIDPDF" class="paper-box">
+	<div>
+        <div>
+		<table cellpadding="0" cellspacing="0">
+            <tr class="top">
+                <td colspan="3">   
+                </td>
+            </tr>   
+            <tr class="information">
+                
+                   
+                            <td>
+                                <b>ATTESTATION DE DÉPLACEMENT DÉROGATOIRE</b><br>
+                                En application de l’article 1er du décret du 16 mars 2020 portant réglementation des
+déplacements dans le cadre de la lutte contre la propagation du virus Covid-19 :<br>  
+                            <td class="sousigne" style="padding-left:100px;">
+								<b>Je sousigné :</b><br>
+                                Mme / M: <textarea  style="width:100%;" class="coord" rows="1" id="iciCoordonneesClient1"></textarea>
+								Né(e) le :  <textarea style="width:100%;" class="coord" rows="1" id="iciCoordonneesClient2"></textarea>
+								Demeurant : <textarea  style="width:100%;" class="coord" rows="4" id="iciCoordonneesClient3"></textarea>
+                            </td>
+                        
+                </td>
+            </tr>
+            <tr class="entete">
+                <td colspan="2"><br>
+                    certifie que mon déplacement est lié au motif suivant (cocher la case) autorisé par
+l’article 1er du décret du 16 mars 2020 portant réglementation des déplacements dans
+le cadre de la lutte contre la propagation du virus Covid-19 :
+                </td>   
+            </tr>
+          <tr class="optionscovidpdf">
+                <td colspan="2">			
+				<div>
+  <input type="checkbox" id="covidpdf" name="covidpdf">
+  <label for="covidpdf">déplacements entre le domicile et le lieu d’exercice de l’activité professionnelle,
+lorsqu’ils sont indispensables à l’exercice d’activités ne pouvant être organisées
+sous forme de télétravail (sur justificatif permanent) ou déplacements
+professionnels ne pouvant être différés ;</label>
+</div>		
+<div>
+  <input type="checkbox" id="covidpdf" name="covidpdf">
+  <label for="covidpdf">déplacements pour effectuer des achats de première nécessité dans des
+établissements autorisés (liste sur gouvernement.fr); </label>
+</div>
+
+<div>
+  <input type="checkbox" id="covidpdf" name="covidpdf">
+  <label for="covidpdf">déplacements pour motif de santé;</label>
+</div>
+<div>
+  <input type="checkbox" id="covidpdf" name="covidpdf">
+  <label for="covidpdf">déplacements pour motif familial impérieux, pour l’assistance aux personnes
+vulnérables ou la garde d’enfants ;</label>
+</div>
+<div>
+  <input type="checkbox" id="covidpdf" name="covidpdf">
+  <label for="covidpdf">déplacements brefs, à proximité du domicile, liés à l’activité physique individuelle
+des personnes, à l’exclusion de toute pratique sportive collective, et aux besoins
+des animaux de compagnie.</label>
+</div>			          
+                </td>
+            </tr>           
+            <td class="sousigne">
+								Fait à :<textarea style="width:300px;"  class="coord" rows="1"></textarea>
+								<br>le :<textarea style="width:100px;" class="coord" rows="1"></textarea>
+								<br>Signature : 
+								
+								 
+    
+   
+   <div id="sketchpadapp">
+        <div class="leftside1">
+             
+
+             
+        </div>
+        <div class="rightside">
+            <canvas id="sketchpad" height="200" width="400">
+            </canvas>
+			
+        </div>
+    </div>
+	<br>
+    
+
+
+                            </td>                      
+        </table>
+    </div>
+             
+
+</div>
+</div>
+<div class="bouton"><a href="#" class="square_btn" onclick="generatePDF();">Générer le PDF</a></div>
+</div>      
+</div>
+
+</body>
+</html>
