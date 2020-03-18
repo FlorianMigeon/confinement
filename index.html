@@ -2,7 +2,7 @@
  <Head>
  <meta charset="utf-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
-	<meta name="viewport" content="width=device-width,initial-scale=1" id="viewport-meta" />
+	
 	<meta name="description" content="">
 	<meta name="keywords" content="">
 	<meta name="author" content="">
@@ -12,10 +12,7 @@
 
 	<script type="application/javascript">
       
-	 function popup(){
-setTimeout(function(){ alert('Remplissez les champs puis cliquez sur "générer le document"'); }, 1000);
-}
-   
+	
    
    
    
@@ -239,19 +236,8 @@ setTimeout(function(){ alert('Remplissez les champs puis cliquez sur "générer 
 	</head>
 	<body onload="popup()">
 	<div>
-	<div id="formPDF" class="form-box" style="display:block;">
-	<div>Mme / M:<br> <textarea class="generator" rows="1" id="Gen1" maxlength="100"></textarea></div>
-	<div>Né(e) le:<br> <textarea class="generator" rows="1" id="Gen2" maxlength="100"></textarea></div>
-	<div>Demeurant : <br> <textarea class="generator" rows="4" id="Gen3" maxlength="100"></textarea></div>
-	<div>Fait à : <br><textarea class="generator" rows="1" id="Gen4" maxlength="100"></textarea></div>
-	<div>le : <br><textarea class="generator" rows="1" id="Gen5" maxlength="100"></textarea></div>
-	Signature : <br><canvas id="sig-canvas" width="400" height="160"></canvas><br>
-				<button class="btn btn-primary" onclick="Copydata();" id="sig-submitBtn">Générer le document</button>
-				<button class="btn btn-default" id="sig-clearBtn">Refaire Signature</button>
-				<textarea style="display:none;" id="sig-dataUrl" class="form-control" rows="5"></textarea>
-<br>	
-</div>
-	<div id="printCOVIDPDF" class="paper-box" style="display:none;">
+	
+	<div id="printCOVIDPDF" class="paper-box" style="display:block;">
 	<div>
         <div>
 		<table cellpadding="0" cellspacing="0">
@@ -268,9 +254,9 @@ setTimeout(function(){ alert('Remplissez les champs puis cliquez sur "générer 
 déplacements dans le cadre de la lutte contre la propagation du virus Covid-19 :<br>  
                             <td class="sousigne" style="padding-left:100px;">
 								<b>Je sousigné :</b><br>
-                                Mme / M: <textarea readonly="readonly" style="width:100%;" class="coord" rows="1" id="iciGen1"></textarea>
-								Né(e) le :  <textarea readonly="readonly" style="width:100%;" class="coord" rows="1" id="iciGen2"></textarea>
-								Demeurant : <textarea readonly="readonly"  style="width:100%;" class="coord" rows="4" id="iciGen3"></textarea>
+                                Mme / M: <textarea  style="width:100%;" class="coord" rows="1" id="iciGen1"></textarea>
+								Né(e) le :  <textarea  style="width:100%;" class="coord" rows="1" id="iciGen2"></textarea>
+								Demeurant : <textarea   style="width:100%;" class="coord" rows="4" id="iciGen3"></textarea>
                             </td>
                         
                 </td>
@@ -315,8 +301,8 @@ des animaux de compagnie.</label>
                 </td>
             </tr>           
             <td class="sousigne">
-								Fait à :<textarea readonly="readonly" style="width:300px;"  class="coord" rows="1" id="iciGen4"></textarea>
-								<br>le :<textarea readonly="readonly" style="width:100px;" class="coord" rows="1" id="iciGen5"></textarea>
+								Fait à :<textarea  style="width:300px;"  class="coord" rows="1" id="iciGen4"></textarea>
+								<br>le :<textarea  style="width:100px;" class="coord" rows="1" id="iciGen5"></textarea>
 								<br>Signature : <br>
 				<img id="sig-image" src=""/>
                             </td>                      
@@ -326,7 +312,7 @@ des animaux de compagnie.</label>
 
 </div>
 </div>
-<div class="bouton" style="display:none;" id="boutonGen"><a href="#" class="square_btn" onclick="generatePDF();">Générer le PDF</a></div>
+<div class="bouton"><a href="#" class="square_btn" onclick="generatePDF();">Générer le PDF</a></div>
 </div>      
 </div>
 <script type="text/javascript">
@@ -362,16 +348,9 @@ des animaux de compagnie.</label>
 	}, false);
 	submitBtn.addEventListener("click", function (e) {
 	
-  $("#iciGen1").val($("#Gen1").val());
- $("#iciGen2").val($("#Gen2").val());
-  $("#iciGen3").val($("#Gen3").val());
-   $("#iciGen4").val($("#Gen4").val());
-    $("#iciGen5").val($("#Gen5").val());
-	document.getElementById("printCOVIDPDF").style.display="block";
-	document.getElementById("formPDF").style.display="none";
-	document.getElementById("boutonGen").style.display="block";
-	document.getElementById("viewport-meta").setAttribute("content", "width=600px");
-	setTimeout(function(){ alert('Cochez la raison de votre déplacmenet puis cliquez sur "générer le PDF"'); }, 1000);
+  
+	
+	
 
 		var dataUrl = canvas.toDataURL();
 		sigText.innerHTML = dataUrl;
