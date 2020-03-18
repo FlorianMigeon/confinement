@@ -6,18 +6,11 @@
 	<meta name="description" content="">
 	<meta name="keywords" content="">
 	<meta name="author" content="">
-	<title>Générateur mobile d'autorisation de déplacement</title>
+	<title>Générateur d'autorisation de déplacement</title>
  <script type="application/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.9.2/html2pdf.bundle.min.js"></script>
 	<script type="application/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.10.1/jquery.min.js"></script>
-
 	<script type="application/javascript">
       
-	
-   
-   
-   
-   
-   
       function generatePDF() {
         // Choose the element that our invoice is rendered in.
         var element = document.getElementById("printCOVIDPDF");
@@ -235,7 +228,7 @@
 		}
     </style>
 	</head>
-	<body onload="popup()">
+	<body>
 	<div>
 	
 	<div id="printCOVIDPDF" class="paper-box" style="display:block;">
@@ -277,22 +270,25 @@ le cadre de la lutte contre la propagation du virus Covid-19 :</div>
 lorsqu’ils sont indispensables à l’exercice d’activités ne pouvant être organisées
 sous forme de télétravail (sur justificatif permanent) ou déplacements
 professionnels ne pouvant être différés ;</label>
-</div>		
+</div>
+<br>		
 <div>
   <input type="checkbox" id="covidpdf" name="covidpdf">
   <label for="covidpdf">déplacements pour effectuer des achats de première nécessité dans des
 établissements autorisés (liste sur gouvernement.fr); </label>
 </div>
-
+<br>
 <div>
   <input type="checkbox" id="covidpdf" name="covidpdf">
   <label for="covidpdf">déplacements pour motif de santé;</label>
 </div>
+<br>
 <div>
   <input type="checkbox" id="covidpdf" name="covidpdf">
   <label for="covidpdf">déplacements pour motif familial impérieux, pour l’assistance aux personnes
 vulnérables ou la garde d’enfants ;</label>
 </div>
+<br>
 <div>
   <input type="checkbox" id="covidpdf" name="covidpdf">
   <label for="covidpdf">déplacements brefs, à proximité du domicile, liés à l’activité physique individuelle
@@ -306,11 +302,11 @@ des animaux de compagnie.</label>
 								<br>le :<textarea  style="width:100px;" class="coord" rows="1" id="iciGen5"></textarea>
 								<br>Signature : <br>
 				<canvas id="sig-canvas" width="300" height="160"></canvas><br>
-				<button style="display:none;" class="btn btn-primary" id="sig-submitBtn">Générer le document</button>
+				<button style="display:none;" class="btn btn-primary" id="sig-submitBtn"></button>
 				<button class="btn btn-default" id="sig-clearBtn">Refaire Signature</button>
 				<textarea style="display:none;" id="sig-dataUrl" class="form-control" rows="5"></textarea>
 <br>	<br>
-				Horodatage génération : <script>var DATE=new Date();document.write(DATE.getDate()+"/"+(DATE.getMonth()+1)+"/"+DATE.getFullYear());</script> à <script>var HEURE = new Date(); document.write(HEURE.getHours()+"h"+HEURE.getMinutes());</script>
+				Horodatage : <script>var DATE=new Date();document.write(DATE.getDate()+"/"+(DATE.getMonth()+1)+"/"+DATE.getFullYear());</script> à <script>var HEURE = new Date(); document.write(HEURE.getHours()+"h"+HEURE.getMinutes());</script>
                             </td>                      
         </table>
     </div>
@@ -353,11 +349,6 @@ des animaux de compagnie.</label>
 		sigImage.setAttribute("src", "");
 	}, false);
 	submitBtn.addEventListener("click", function (e) {
-	
-  
-	
-	
-
 		var dataUrl = canvas.toDataURL();
 		sigText.innerHTML = dataUrl;
 		sigImage.setAttribute("src", dataUrl);
